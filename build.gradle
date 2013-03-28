@@ -1,0 +1,35 @@
+apply plugin: 'idea'
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'application'
+
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+
+    maven {
+        url 'http://artifactory.milesburton.com/artifactory/public'
+    }
+}
+
+dependencies {
+
+    def springVersion = '3.2.1.RELEASE'
+    groovy 'org.codehaus.groovy:groovy-all:2.1.1'
+
+    compile 'com.mb:console-argument-processor:1.0.130312.1436',
+            // Spring
+            "org.springframework:spring-core:$springVersion",
+            "org.springframework:spring-aop:$springVersion",
+            "org.springframework:spring-context:$springVersion",
+            'commons-lang:commons-lang:2.6'
+
+
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0',
+            'cglib:cglib-full:2.0.2'
+
+}
+
+mainClassName = "mb.Main"
